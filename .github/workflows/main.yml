@@ -1,28 +1,19 @@
-name: personal_website
+name: Check URLs
 
 on:
   push:
     branches:
-      - main  # main 브랜치에 push될 때만 이벤트 발생
+      - main
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest  # 최신 버전의 Ubuntu에서 실행
-
+  check-urls:
+    runs-on: ubuntu-latest
+    name: Checks URLs from JSON file
     steps:
-      - name: Checkout 코드  # 코드를 가져오기 위한 단계
+      - name: Checkout
         uses: actions/checkout@v2
-
-      - name: 웹사이트 파일 복사  # 웹사이트 파일을 배포 디렉토리로 복사하는 단계
-        run: |
-          mkdir -p public
-          cp index.html public/
-          cp -r assets public/
-
-      - name: GitHub Pages에 배포  # 배포 스크립트
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Check URLs
+        uses: bythepixel/urlchecker@v0.2.0
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
-          keep_files: true
-          force_orphan: true 
+          hostname: 'postman-echo.com'
+          filename: ./urls.json
