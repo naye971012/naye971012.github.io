@@ -1,16 +1,16 @@
-name: Check URLs
+name: Check URLs #my name of the workflow
 
-on:
-  push:
-    branches:
-      - main
-
-jobs:
+on: #determine when to run
+  push: #run when pushed
+    branches: #run when certain branch is pushed
+      - main #runs when main branch is pushed
+  
+jobs: #main component of worflow
   check-url-status:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest #run following steps in ubuntu-latest enviornment
     steps:
-      - name: Check URL-1
-        uses: gpuliyar/check-url-action@v1.0.1
+      - name: Check URL-1 #step name
+        uses: gpuliyar/check-url-action@v1.0.1 #select action (from github action marketplace)
         with:
             # URL path to verify (Mandatory)
             url: https://github.com/naye971012
@@ -34,8 +34,8 @@ jobs:
             # default value 200
             codes-allowed: 200,201,202
       
-      - name: Check URL-2
-        uses: gpuliyar/check-url-action@v1.0.1
+      - name: Check URL-2 #step name
+        uses: gpuliyar/check-url-action@v1.0.1 #select action (from github action marketplace)
         with:
             # URL path to verify (Mandatory)
             url: https://github.com/naye971012/segmentation_basis
