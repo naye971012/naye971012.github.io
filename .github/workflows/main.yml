@@ -4,7 +4,7 @@ on: #determine when to run
   push: #run when pushed
     branches: #run when certain branch is pushed
       - main #runs when main branch is pushed
-  
+
 jobs: #main component of worflow
   check-url-status:
     runs-on: ubuntu-latest #run following steps in ubuntu-latest enviornment
@@ -16,22 +16,15 @@ jobs: #main component of worflow
             url: https://github.com/naye971012
 
             # Initial delay before probing the URL (in milliseconds) (Optional)
-            # default value 0 - no initial delay
-            # Max allowed initial delay is 30s
             init-delay: 1000
 
             # Number of retries permitted. 
-            # Max allowed retry is 5 (Optional)
-            # default value 0 - no retries
             retry-count: 3
 
             # Amount of time to wait before retrying the activity (in milliseconds) (Optional)
-            # default value 0 - no delay
-            # Max allowed retry delay is 30s
             retry-delay: 1000
 
             # List of HTTP response codes that are acceptable/allowed. Separate them by ',' (commas) (Optional)
-            # default value 200
             codes-allowed: 200,201,202
       
       - name: Check URL-2 #step name
