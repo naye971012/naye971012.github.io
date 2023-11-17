@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+env:
+  SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+
 jobs:
   check-urls:
     runs-on: ubuntu-latest
