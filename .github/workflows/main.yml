@@ -5,18 +5,31 @@ on:
     branches:
       - main
 
-env:
-  SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-
 jobs:
-  check-urls:
+  check-url-status:
     runs-on: ubuntu-latest
-    name: Checks URLs from JSON file
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Check URLs
-        uses: bythepixel/urlchecker@v0.2.0
-        with:
-          hostname: 'postman-echo.com'
-          filename: ./urls.json
+    - name: Check URL Status
+      uses: gpuliyar/check-url-action@v1.0.1
+      with:
+          # URL path to verify (Mandatory)
+          url: https://github.com/naye971012
+
+          # Initial delay before probing the URL (in milliseconds) (Optional)
+          # default value 0 - no initial delay
+          # Max allowed initial delay is 30s
+          init-delay: 1000
+
+          # Number of retries permitted. 
+          # Max allowed retry is 5 (Optional)
+          # default value 0 - no retries
+          retry-count: 3
+
+          # Amount of time to wait before retrying the activity (in milliseconds) (Optional)
+          # default value 0 - no delay
+          # Max allowed retry delay is 30s
+          retry-delay: 1000
+
+          # List of HTTP response codes that are acceptable/allowed. Separate them by ',' (commas) (Optional)
+          # default value 200
+          codes-allowed: 200,201,202
